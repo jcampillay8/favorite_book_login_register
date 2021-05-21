@@ -23,7 +23,11 @@ class UserManager(models.Manager):
         elif postData['last_name'].isalpha() == False:
             errors['last_name'] = "Last name cannot contain numbers"
 
-        # Validate Email
+        # Validate email 
+        email_exists = User.objects.filter(email=postData['email'])
+        if len(email_exists) != 0:
+            errors['email'] = " email have been already registered"
+
         if len(postData['email']) < 1:
             errors['email'] = "email must be more than 2 characters"
         elif not EMAIL_REGEX.match(postData['email']):

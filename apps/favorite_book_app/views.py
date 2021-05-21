@@ -27,13 +27,13 @@ def addbook(request):
         for key, value in errors.items():
             messages.error(request, value, extra_tags=key)
             return redirect('/book/add_book')
-    else:        
-        DBtitle = request.POST['form_add_title']
-        DBdesc = request.POST['form_add_description']
+    else:
+        title = request.POST['form_add_title']
+        desc = request.POST['form_add_description']
         uploaded_by_id = request.session['id']
         uploaded_by = User.objects.get(id=uploaded_by_id)
         new_book = Book.objects.create(
-            DBtitle=DBtitle, DBdesc=DBdesc, uploaded_by=uploaded_by)
+                title=  title, desc=  desc, uploaded_by=uploaded_by)
         new_book.users_who_like.add(uploaded_by)
         return redirect('/book/add_book')
 
@@ -67,4 +67,25 @@ def edit_book(request, bookid):
         current_book.DBdesc = new_desc
         current_book.save()
 
-        return redirect('/books/'+str(bookid))
+        return redirect('/book/'+str(bookid))
+
+def delete_book(request, bookid):
+    current_book = Book.objects.get(id=bookid)
+    book_creator_id = current_book.uploaded_by_id
+    if(request.session['id'] == book_creator_id):
+        current_book.delete()
+        return redirect('/book/add_book')
+    else:
+        return redirect('/')
+
+def like_book(request, bookid):
+    current_book = Book.objects.get(id=bookid)
+    current_user= User.objects.get(id=request.session['id'])
+    current_book.users_who_like.add(current_user)
+    return redirect('/book/'+str(bookid))
+
+def unlike_book(request, bookid):
+    current_book = Book.objects.get(id=bookid)
+    current_user= User.objects.get(id=request.session['id'])
+    current_book.users_who_like.remove(current_user)
+    return redirect('/book/'+str(bookid))
