@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login-Register</title>
+    {% load static %}
+        <link rel="stylesheet" href="{% static 'style_index.css' %}">
+</head>
+<body>
+    <div class="contenedor">
+        <div class="header">
+            <h1>Login</h1>
+            <a href="{% url 'users' %}" class='btn'>Show Users</a>
+        </div>
+        <div class="row">
+            <div class="col1">
+                {% if messages %}
+                    <div class="error-box">
+                        {% for message in messages %}
+                            <p class='messages-error'>{{message}}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <img src="{% static 'books.jpg' %}" alt="image">
+            </div>            
+            <div class="col2">
+                <div class="form-container">
+                    <div class="form-btn">
+                        <span onclick='login()'>Login</span>
+                        <span onclick='register()'>Register</span>
+                        <hr id ='Indicator'>
+                    </div>
+                    <form action="login" id="LoginForm" method='post'>
+                        {% csrf_token %}
+                        <div class="form-item">
+                            <label class="label-item">Email:</label>
+                            <input type="email" class='input-item' name='loginEmail'>
+                        </div>
+                        <div class="form-item">
+                            <label class="label-item">Password</label>
+                            <input type="password" class='input-item' name='password'>
+                        </div>
+                        <button type="submit" name='login' class="btn">Login</button>
+                        <a href="">Forgot password</a>
+                    </form>
+                    <form id="RegForm" action='register' method='post'>
+                        {% csrf_token %}
+                        <div class="form-item">
+                            <label class="label-item">First Name:</label>
+                            <input type="text" class='input-item' name='first_name'>
+                        </div>
+                        <div class="form-item">
+                            <label class="label-item">Last Name:</label>
+                            <input type="text" class='input-item' name='last_name'>
+                        </div>
+                        <div class="form-item">
+                            <label class="label-item">Email Address:</label>
+                            <input type="email" class='input-item' name='email'>
+                        </div>
+                        <div class="form-item">
+                            <label class="label-item">Password:</label>
+                            <input type="password" class='input-item' name='password'>
+                        </div>
+                        <div class="form-item">
+                            <label class="label-item">Confirm Password:</label>
+                            <input type="password" class='input-item' name='confirm_password'>
+                        </div>
+                        <button type='submit' name='formAction' value='Login' class='btn'>Register</button>
+                    </form>
+
+
+                    
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'script.js' %}"></script>
+</body>
+</html>

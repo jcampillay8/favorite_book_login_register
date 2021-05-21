@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div id="wrapper">
+        <h1>Welcome {{ user.first_name }} </h1>
+        <p>You have successfully logged in!</p>
+        <div style="text-align: center; padding:20px">
+            <a href="{% url 'home' %}" class="button-1">Home</a>
+        </div>
+    </div>
+</body>
+</html>

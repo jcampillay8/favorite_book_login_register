@@ -1,0 +1,75 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+body{
+    background: #E9ECF4;
+    color:#000;
+    font-family: 'Roboto', sans-serif;
+}
+.contenedor{
+    width:90%;
+    max-width: 1200px;
+    margin:20px auto;
+    display: grid;
+    /* grid-gap:10px; */
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(3,auto);
+}
+
+.contenedor .header,
+.contenedor .row{
+    background: #fff;
+    padding: 20px;
+}
+
+.contenedor .header{
+    background: #1a1a1a;
+    color: #fff;
+    grid-column:1/5;
+    /* text-align:unset; */
+    display: flex;  
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 100px;
+    padding-right: 100px;    
+}
+
+.row{
+    grid-column: 1/5;
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn_out{
+    display: inline-block;
+    background:  rgb(116, 14, 14);
+    color: #fff;
+    padding: 8px 30px;
+    margin: 30px 0;
+    border-radius: 30px;
+}
+
+.col1{
+    display: flex;
+    flex-direction: column;
+}
+
+.col1 .titulo,
+.col1 .descripcion,
+.col1 .boton,
+.col1 .messages{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.col1 label{
+    margin: 10px;
+    /* display: flex;
+    align-self: flex-start; */
+}
+
+.col1 .messages{
+    color: rgb(187, 15, 15);
+}
